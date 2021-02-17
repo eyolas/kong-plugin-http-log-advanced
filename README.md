@@ -13,7 +13,7 @@ WIP
 You can add the plugin on top of an API by executing the following request on your Kong server:
 
 ```sh
-$ http POST :8001/services/{api}/plugins name=middleman-advanced config:='{ "services": [{"url": "http://myserver.io/validate", "response": "table", "timeout": 10000, "keepalive": 60000}]}'
+$ http POST :8001/services/{api}/plugins name=middleman-advanced config:='{ "services": [{"url": "http://myserver.io/validate", "timeout": 10000, "keepalive": 60000}]}'
 ```
 
 <table><thead>
@@ -48,11 +48,6 @@ $ http POST :8001/services/{api}/plugins name=middleman-advanced config:='{ "ser
 <td><code>url</code><br><em>required</em></td>
 <td></td>
 <td>The URL to which the plugin will make a JSON <code>POST</code> request before proxying the original request.</td>
-</tr>
-<tr>
-<td><code>response</code><br><em>required</em></td>
-<td>table</td>
-<td>The type of response the middleman service is going to respond with</td>
 </tr>
 <tr>
 <td><code>timeout</code></td>
