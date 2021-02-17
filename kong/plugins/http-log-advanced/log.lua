@@ -1,5 +1,5 @@
-local JSON = require "kong.plugins.tcp-log-advanced..json"
-local PAYLOAD = require "kong.plugins.tcp-log-advanced..payload"
+local JSON = require "kong.plugins.http-log-advanced.json"
+local PAYLOAD = require "kong.plugins.http-log-advanced.payload"
 local basic_serializer = require "kong.plugins.log-serializers.basic"
 local url = require "socket.url"
 
@@ -80,7 +80,6 @@ end
 function _M.execute(conf, payload)
   local message = basic_serializer.serialize(ngx)
   for i, config in pairs(conf.services) do
-    kong.log.err("CONFIG LOL: ", JSON.encode(config))
     local b, code, body = timer_at(0, send, config, payload, message)
     if not b then kong.log.err("failed to create timer: ", body) end
   end

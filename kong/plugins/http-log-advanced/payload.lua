@@ -1,4 +1,4 @@
-local JSON = require "kong.plugins.middleman-advanced.json"
+local JSON = require "kong.plugins.http-log-advanced.json"
 local resty_kong_tls = require("resty.kong.tls")
 
 

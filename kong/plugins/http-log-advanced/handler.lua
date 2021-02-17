@@ -1,6 +1,6 @@
 local BasePlugin = require "kong.plugins.base_plugin"
-local Payload = require "kong.plugins.tcp-log-advanced.payload"
-local log = require "kong.plugins.tcp-log-advanced.log"
+local Payload = require "kong.plugins.http-log-advanced.payload"
+local log = require "kong.plugins.http-log-advanced.log"
 local kong_tls = require "resty.kong.tls"
 
 local TcpLogAdvancedHandler = BasePlugin:extend()
@@ -8,7 +8,7 @@ local TcpLogAdvancedHandler = BasePlugin:extend()
 TcpLogAdvancedHandler.PRIORITY = 7
 
 function TcpLogAdvancedHandler:new()
-  TcpLogAdvancedHandler.super.new(self, "tcp-log-advanced")
+  TcpLogAdvancedHandler.super.new(self, "http-log-advanced")
 end
 
 function TcpLogAdvancedHandler:access(conf)
@@ -21,7 +21,6 @@ end
 
 function TcpLogAdvancedHandler:log(conf)
   TcpLogAdvancedHandler.super.log(TcpLogAdvancedHandler)
-  kong.log.err("ici", ngx.ctx.runscope.payload)
   log.execute(conf, ngx.ctx.runscope.payload)
 end
 
